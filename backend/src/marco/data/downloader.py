@@ -8,7 +8,7 @@ from marco.data.providers.elo import EloProvider
 class DownloadManager:
     def __init__(self):
         self.providers = [
-            HistoricalMatchesProvider(DATA_DIR / "raw" / "matches"),
+            HistoricalMatchesProvider(DATA_DIR / "raw" / "historical"),
             FIFAProvider(DATA_DIR / "raw" / "rankings"),
             EloProvider(DATA_DIR / "raw" / "elo"),
         ]

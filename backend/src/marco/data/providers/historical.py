@@ -1,4 +1,6 @@
 from pathlib import Path
+import shutil
+
 import kagglehub
 
 from marco.data.providers.base import DataProvider
@@ -9,16 +11,33 @@ class HistoricalMatchesProvider(DataProvider):
         super().__init__("Historical Matches", destination)
 
     def download(self):
-        print("Downloading historical dataset from Kaggle...")
+        print("Downloading historical dataset...")
 
-        path = kagglehub.dataset_download(
-            "martj42/international-football-results-from-1872-to-2017"
+        dataset_path = Path(
+            kagglehub.dataset_download(
+                "martj42/international-football-results-from-1872-to-2017"
+            )
         )
 
-        print(f"Dataset downloaded to: {path}")
+        self.destination.mkdir(parents=True, exist_ok=True)
+
+        files = [
+            "results.csv",
+            "goalscorers.csv",
+            "shootouts.csv",
+            "former_names.csv",
+        ]
+
+        for file in files:
+            src = dataset_path / file
+            dst = self.destination / file
+
+            shutil.copy2(src, dst)
+
+            print(f"Copied {file}")
 
     def validate(self):
-        print("Historical dataset validated.")
+        print("Validated Historical Matches")
 
     def transform(self):
-        print("Historical dataset transformed.")
+        print("Transformed Historical Matches")
