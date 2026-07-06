@@ -1,0 +1,25 @@
+datasets:
+  historical_matches:
+    name: "International Football Results"
+    filename: "historical_matches.csv"
+    output_dir: "../../data/raw"
+
+  fifa_rankings:
+    name: "FIFA Rankings"
+    filename: "fifa_rankings.csv"
+    output_dir: "../../data/raw"
+
+  elo_ratings:
+    name: "World Football Elo Ratings"
+    filename: "elo_ratings.csv"
+    output_dir: "../../data/raw"
+
+  worldcup2026:
+    enabled: true
+    source: api
+    destination: data/raw/worldcup2026
+
+  players:
+    enabled: true
+    source: api
+    destination: data/raw/players
